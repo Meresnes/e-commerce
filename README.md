@@ -1,1 +1,1 @@
-# webpack-config
+# My webpack + eslint config
