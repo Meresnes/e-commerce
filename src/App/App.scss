@@ -1,0 +1,30 @@
+@import "@styles/variables.scss";
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    @include container_layout;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container_title {
+    @include title_font;
+}

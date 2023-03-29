@@ -1,0 +1,32 @@
+{
+    "extends": "./tsconfig.paths.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "module": "es6",
+        "target": "es6",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+    },
+    "include": [
+        "src/**/*",
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
