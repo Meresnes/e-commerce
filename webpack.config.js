@@ -1,11 +1,18 @@
 const path = require("path");
 
+/**Перезапуск проекта при изменений*/
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+/**Плагин для работы с EsLint*/
 const ESLintPlugin = require("eslint-webpack-plugin");
+/**Проверка TypeScript */
 const TsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
+/**Плагин для запуска проекта */
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+/**Работа с css стилями */
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+/**Путь для сборки */
 const buildPath = path.resolve(__dirname, "dist");
+/**Путь src */
 const srcPath = path.resolve(__dirname, "src");
 const isProd = process.env.NODE_ENV === "production";
 
@@ -15,15 +22,15 @@ const getSettingsForStyles = (withModules = false) => {
     !withModules
       ? "css-loader"
       : {
-        loader: "css-loader",
-        options: {
-          modules: {
-            localIdentName: !isProd
-              ? "[path][name]__[local]"
-              : "[hash:base64]",
+          loader: "css-loader",
+          options: {
+            modules: {
+              localIdentName: !isProd
+                ? "[path][name]__[local]"
+                : "[hash:base64]",
+            },
           },
         },
-      },
     {
       loader: "postcss-loader",
       options: {
@@ -43,7 +50,7 @@ module.exports = {
   output: {
     path: buildPath,
     filename: "bundle.js",
-    publicPath: '/',
+    publicPath: "/",
   },
 
   plugins: [
@@ -62,7 +69,7 @@ module.exports = {
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
-    maxAssetSize: 512000
+    maxAssetSize: 512000,
   },
   module: {
     rules: [
@@ -108,5 +115,4 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-
 };
