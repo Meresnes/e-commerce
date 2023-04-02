@@ -1,0 +1,1 @@
+export { MainPageStore } from "./MainPageStore";

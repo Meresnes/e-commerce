@@ -1,6 +1,7 @@
-$default_font-family: "Arial";
+$default_font-family: "Source Sans Pro";
 $default_backbround: #f5f5f5;
 $default_container_color: #ffffff;
+$default_text_color: #151411;
 
 @mixin container_layout($max-width: 1400px, $background: $default_container_color) {
     background: $background;
@@ -18,14 +19,12 @@ $default_container_color: #ffffff;
 
 @mixin main_font {
     font-family: $default_font-family;
-    font-size: 18px;
+    font-size: 26px;
     line-height: 28px;
-    color: #0d0d0d;
 }
 
 @mixin small-text_font {
     font-family: $default_font-family;
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
 }

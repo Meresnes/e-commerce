@@ -1,12 +1,15 @@
 import React from "react";
 
+import { Route, Routes } from "react-router-dom";
+
+import MainPage from "./pages/MainPage";
 import "./App.scss";
 
 const App = () => {
   return (
-    <div className="container">
-      <h2 className="container_title">Hello new project!</h2>
-    </div>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+    </Routes>
   );
 };
 
