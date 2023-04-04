@@ -2,18 +2,18 @@
 
 .main_container {
     @include container_layout();
-    min-height: 100vh;
+    min-height: 90vh;
     margin-top: 0;
 
     .product_container {
-        padding: 50px;
+        padding: 100px;
         box-sizing: border-box;
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         height: auto;
-        justify-content: center;
+        justify-content: space-between;
 
         .product_container__image {
             max-width: 500px;

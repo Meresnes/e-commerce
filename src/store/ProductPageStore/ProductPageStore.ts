@@ -1,3 +1,4 @@
+import { Categories } from "@utils/categories";
 import { Meta } from "@utils/meta";
 import { ProductItems, normolizeProducts } from "@utils/productsTypes";
 import { ILocalStore } from "@utils/useLocalStore";
@@ -16,7 +17,7 @@ export class ProductPageStore implements ILocalStore {
   private _list: ProductItems = {
     id: 0,
     main_image: "",
-    category: "",
+    category: Categories.Empty,
     description: "",
     images: [],
     price: 0,

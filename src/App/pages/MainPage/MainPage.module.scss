@@ -97,5 +97,12 @@
                 border-radius: 20px;
             }
         }
+
+        .product_block {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 }

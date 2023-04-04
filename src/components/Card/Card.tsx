@@ -14,7 +14,7 @@ export type CardProps = {
   title: string;
 };
 
-const Card = ({
+const Card: React.FC<CardProps> = ({
   id,
   main_image,
   category,

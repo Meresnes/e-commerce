@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
+import Card from "@components/Card";
 import { MainPageStore } from "@store/MainPageStore/";
 import { Meta } from "@utils/meta";
 import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 
-import Card from "./components/Card/";
 import styles from "./MainPage.module.scss";
 
 const MainPage = () => {
@@ -65,7 +65,7 @@ const MainPage = () => {
             Total Product{" "}
             <span className={styles.title__sub}>{mainPageStore.totalRes}</span>
           </h2>
-          <div className={styles.content_block}>
+          <div className={styles.product_block}>
             {mainPageStore.meta === Meta.success &&
               mainPageStore.list.map((item: ProductItems) => (
                 <Card

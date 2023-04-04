@@ -1,0 +1,20 @@
+@import "@styles/variables.scss";
+
+.container {
+    @include container_layout();
+    display: flex;
+    flex-direction: column;
+    margin: 0 100px;
+
+    .container__titie {
+        @include title_font();
+        font-size: 42px;
+    }
+
+    .container__carousel_block {
+    }
+}
+
+.galleryItem {
+    width: 400px;
+}
