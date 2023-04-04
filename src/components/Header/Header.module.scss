@@ -1,0 +1,57 @@
+@import "@styles/variables.scss";
+
+.header {
+    @include container_layout();
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #ffffff;
+    border-bottom: #f3f3f3 2px solid;
+
+    .header__logo_block {
+        height: 42px;
+        width: 130px;
+        display: flex;
+        align-items: center;
+        margin-left: 100px;
+
+        .header__logo_text {
+            color: $default_text_color;
+        }
+    }
+
+    .header__menue_block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 350px;
+
+        .menue_block__item {
+            @include small-text_font();
+            color: $default_text_color;
+            transition: all 0.3s;
+            display: inline;
+            padding-bottom: 47px;
+            border-bottom: 3px solid transparent;
+
+            &:hover {
+                border-color: #518581;
+                color: #518581;
+            }
+        }
+    }
+
+    .header__user_block {
+        margin-right: 100px;
+        display: flex;
+        align-items: center;
+
+        a {
+            margin-left: 30px;
+            cursor: pointer;
+        }
+    }
+}

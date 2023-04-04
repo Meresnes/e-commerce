@@ -1,0 +1,76 @@
+@import "@styles/variables.scss";
+
+.main_container {
+    @include container_layout();
+    min-height: 100vh;
+    margin-top: 0;
+
+    .product_container {
+        padding: 50px;
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+
+        .product_container__image {
+            max-width: 500px;
+            position: relative;
+            height: 400px;
+            img {
+                position: relative;
+                max-width: 500px;
+                max-height: 400px;
+                height: auto;
+                box-shadow: 0px 4px 20px rgba(175, 173, 181, 0.6);
+                border-radius: 7px;
+            }
+        }
+
+        .product_container__text {
+            position: relative;
+            margin-left: 40px;
+            .product_container__text__title {
+                @include title_font();
+                font-size: 44px;
+                margin-left: 20px;
+            }
+
+            .product_container__text__description {
+                @include small-text_font();
+                margin-left: 20px;
+                color: #afadb5;
+                width: 600px;
+            }
+
+            .button_block {
+                max-width: 800px;
+                width: 100%;
+
+                .button_block_button {
+                    @include small-text_font();
+                    font-weight: 700;
+                    position: relative;
+                    width: 285px;
+                    height: 60px;
+                    margin-left: 20px;
+                    border: 2px solid;
+                    cursor: pointer;
+                }
+
+                .button_block__buy {
+                    background: #518581;
+                    color: #ffffff;
+                    border-color: #518581;
+                }
+
+                .button_block__cart {
+                    background: #ffffff;
+                    border-color: #f3f3f3;
+                }
+            }
+        }
+    }
+}
