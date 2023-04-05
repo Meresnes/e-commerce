@@ -9,6 +9,7 @@ export type CardProps = {
   main_image: string;
   category: string;
   description: string;
+  isInSwiper?: boolean;
   images: string[];
   price: number;
   title: string;
@@ -20,17 +21,27 @@ const Card: React.FC<CardProps> = ({
   category,
   images,
   description,
+  isInSwiper = false,
   price,
   title,
 }: CardProps) => {
   const navigate = useNavigate();
 
   const onClickHandelr = () => {
+    window.scrollTo({
+      top: 10,
+      left: 0,
+      behavior: "smooth",
+    });
     navigate(`/product/${id}`);
   };
   return (
     <>
-      <div className={styles.card} onClick={() => onClickHandelr()}>
+      <div
+        className={styles.card}
+        onClick={() => onClickHandelr()}
+        style={isInSwiper ? { margin: "50px auto" } : { margin: "" }}
+      >
         <img className={styles.card__image} src={main_image} alt={category} />
         <p className={styles.card__description}>{category}</p>
         <h3 className={styles.card__title}>{title}</h3>

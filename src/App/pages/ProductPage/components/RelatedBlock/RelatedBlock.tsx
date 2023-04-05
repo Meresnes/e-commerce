@@ -8,14 +8,17 @@ import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 //doc: https://swiperjs.com/react
+import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-//import { EffectFade } from 'swiper';
 
+import "./Swiper.scss";
 import styles from "./RelatedBlock.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import "swiper/css/autoplay";
+import "swiper/css/effect-cube";
 
 type RelatedBlockProps = {
   images: string[];
@@ -28,6 +31,25 @@ const RelatedBlock: React.FC<RelatedBlockProps> = ({
 }: RelatedBlockProps) => {
   const relatedBlockStore = useLocalStore(() => new MainPageStore());
 
+  const swiperParams = {
+    slidesPerView: 1,
+    breakpoints: {
+      890: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
+    },
+    on: {
+      init() {
+        // ...
+      },
+    },
+  };
+
+  SwiperCore.use([EffectCoverflow, Pagination]);
+
   useEffect(() => {
     relatedBlockStore.setCategory(category);
     relatedBlockStore.getProducts();
@@ -39,12 +61,26 @@ const RelatedBlock: React.FC<RelatedBlockProps> = ({
         <h2 className={styles.container__titie}>Related Items</h2>
         <div className={styles.container__carousel_block}>
           {relatedBlockStore.meta === Meta.success && (
-            <Swiper spaceBetween={50} slidesPerView={3} effect="fade">
+            <Swiper
+              spaceBetween={50}
+              {...swiperParams}
+              effect={"coverflow"}
+              grabCursor={true}
+              coverflowEffect={{
+                rotate: 25,
+                stretch: 10,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              pagination={{ clickable: true, dynamicBullets: true }}
+            >
               {relatedBlockStore.list.map((item: ProductItems) => (
                 <SwiperSlide>
                   <Card
                     key={item.id}
                     id={item.id}
+                    isInSwiper={true}
                     main_image={item.main_image}
                     category={item.category}
                     description={item.description}

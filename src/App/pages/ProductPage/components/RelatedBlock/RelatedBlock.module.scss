@@ -12,9 +12,18 @@
     }
 
     .container__carousel_block {
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 70px;
     }
 }
 
-.galleryItem {
-    width: 400px;
+.swiper_card {
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 890px) {
+    // .main_container {
+    // }
 }

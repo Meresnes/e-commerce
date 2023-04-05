@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
 import Card from "@components/Card";
-import { MainPageStore } from "@store/MainPageStore/";
-import { Meta } from "@utils/meta";
+import { MainPageStore } from "@store/MainPageStore";
 import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import styles from "./MainPage.module.scss";
 
@@ -62,12 +62,33 @@ const MainPage = () => {
         </div>
         <div className={styles.content_block}>
           <h2 className={styles.content_block__title}>
-            Total Product{" "}
+            Total Product
             <span className={styles.title__sub}>{mainPageStore.totalRes}</span>
           </h2>
-          <div className={styles.product_block}>
-            {mainPageStore.meta === Meta.success &&
-              mainPageStore.list.map((item: ProductItems) => (
+
+          <InfiniteScroll
+            dataLength={mainPageStore.list.length} //This is important field to render the next data
+            next={() => mainPageStore.getProducts()}
+            hasMore={true}
+            loader={<h4>Loading ...</h4>}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+            // below props only if you need pull down functionality
+            // refreshFunction={this.refresh}
+            // pullDownToRefresh
+            // pullDownToRefreshThreshold={50}
+            // pullDownToRefreshContent={
+            //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+            // }
+            // releaseToRefreshContent={
+            //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+            // }
+          >
+            <div className={styles.product_block}>
+              {mainPageStore.list.map((item: ProductItems) => (
                 <Card
                   key={item.id}
                   id={item.id}
@@ -79,7 +100,8 @@ const MainPage = () => {
                   title={item.title}
                 />
               ))}
-          </div>
+            </div>
+          </InfiniteScroll>
         </div>
       </div>
     </>

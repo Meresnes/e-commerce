@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { ProductPageStore } from "@store/ProductPageStore";
 import { Meta } from "@utils/meta";
@@ -19,6 +19,13 @@ const ProductPage: React.FC = () => {
     productStore.getProduct();
   }, [productStore, id]);
 
+  const setImageHandler = useCallback(
+    (image: string) => {
+      productStore.setCurrentImage(image);
+    },
+    [productStore]
+  );
+
   return (
     <>
       <div className={styles.main_container}>
@@ -26,9 +33,23 @@ const ProductPage: React.FC = () => {
           <div className={styles.product_container}>
             <div className={styles.product_container__image}>
               <img
-                src={productStore.list.main_image}
+                src={productStore.currentImage}
                 alt={productStore.list.title}
               />
+              <div className={styles.small_images_block}>
+                {productStore.list.images.map((image: string) => (
+                  <button
+                    onClick={() => setImageHandler(image)}
+                    className={styles.small_images_block__button}
+                  >
+                    <img
+                      className={styles.small_images_block__button__image}
+                      src={image}
+                      alt={image}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
             <div className={styles.product_container__text}>
               <h2 className={styles.product_container__text__title}>
@@ -61,10 +82,12 @@ const ProductPage: React.FC = () => {
             </div>
           </div>
         )}
-        <RelatedBlock
-          images={productStore.list.images}
-          category={productStore.list.category}
-        />
+        {productStore.meta === Meta.success && (
+          <RelatedBlock
+            images={productStore.list.images}
+            category={productStore.list.category}
+          />
+        )}
       </div>
     </>
   );
