@@ -1,20 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useState } from "react";
 
 import Card from "@components/Card";
 import { MainPageStore } from "@store/MainPageStore";
+import { Meta } from "@utils/meta";
 import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import Dropdown from "./components/Dropdown";
 import styles from "./MainPage.module.scss";
 
 const MainPage = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const mainPageStore = useLocalStore(() => new MainPageStore());
 
-  useEffect(() => {
-    mainPageStore.getProducts();
-  }, [mainPageStore]);
+  const changeSearchInputHandler = useCallback(
+    (value: string) => {
+      mainPageStore.setSearchValue(value);
+    },
+    [mainPageStore]
+  );
+
+  const filterOpenHandler = useCallback(() => {
+    setIsDropdownOpen((prev) => !prev);
+  }, [setIsDropdownOpen]);
+
+  // useEffect(() => {
+  //   mainPageStore.getProducts();
+  // }, []);
 
   return (
     <>
@@ -31,8 +46,13 @@ const MainPage = () => {
             className={styles.search_block__input}
             type="text"
             placeholder="Search property"
+            value={mainPageStore.searchValue}
+            onChange={(event) => changeSearchInputHandler(event.target.value)}
           />
-          <div className={styles.search_block__filter_button}>
+          <div
+            onClick={filterOpenHandler}
+            className={styles.search_block__filter_button}
+          >
             <svg
               width="30"
               height="30"
@@ -58,6 +78,7 @@ const MainPage = () => {
               />
             </svg>
             Filter
+            <Dropdown isOpen={isDropdownOpen} />
           </div>
         </div>
         <div className={styles.content_block}>
@@ -65,27 +86,16 @@ const MainPage = () => {
             Total Product
             <span className={styles.title__sub}>{mainPageStore.totalRes}</span>
           </h2>
-
           <InfiniteScroll
             dataLength={mainPageStore.list.length} //This is important field to render the next data
             next={() => mainPageStore.getProducts()}
             hasMore={true}
-            loader={<h4>Loading ...</h4>}
+            loader={mainPageStore.meta === Meta.loading && <h4>Loading ...</h4>}
             endMessage={
               <p style={{ textAlign: "center" }}>
                 <b>Yay! You have seen it all</b>
               </p>
             }
-            // below props only if you need pull down functionality
-            // refreshFunction={this.refresh}
-            // pullDownToRefresh
-            // pullDownToRefreshThreshold={50}
-            // pullDownToRefreshContent={
-            //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-            // }
-            // releaseToRefreshContent={
-            //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-            // }
           >
             <div className={styles.product_block}>
               {mainPageStore.list.map((item: ProductItems) => (

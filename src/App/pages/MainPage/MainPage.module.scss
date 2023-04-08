@@ -30,7 +30,7 @@
         margin: 70px 100px;
 
         .search_block__input {
-            max-width: 1020px;
+            max-width: 820px;
             width: 100%;
             border: none;
             height: 80px;
@@ -52,6 +52,7 @@
 
         .search_block__filter_button {
             @include small-text_font();
+            position: relative;
             display: flex;
             width: 190px;
             height: 80px;
