@@ -104,6 +104,11 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
+            padding-bottom: 250px;
+        }
+        .loader_product_block {
+            display: flex;
+            justify-content: space-between;
         }
     }
 }

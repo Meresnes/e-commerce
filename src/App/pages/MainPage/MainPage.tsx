@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import Card from "@components/Card";
+import { CardLoader } from "@components/Card/CardLoader";
 import { MainPageStore } from "@store/MainPageStore";
 import { Meta } from "@type/meta";
 import { ProductItems } from "@utils/productsTypes";
@@ -90,12 +91,17 @@ const MainPage = () => {
           <InfiniteScroll
             dataLength={mainPageStore.list.length} //This is important field to render the next data
             next={() => mainPageStore.getProducts()}
-            hasMore={true}
-            loader={mainPageStore.meta === Meta.loading && <h4>Loading ...</h4>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
+            hasMore={
+              mainPageStore.list.length === mainPageStore.getOffset &&
+              mainPageStore.meta === Meta.success
+            }
+            loader={
+              mainPageStore.meta === Meta.loading && (
+                <div className={styles.loader_product_block}>
+                  <CardLoader />
+                  <CardLoader />
+                </div>
+              )
             }
           >
             <div className={styles.product_block}>

@@ -10,7 +10,7 @@ export type CardProps = {
   category: string;
   description: string;
   isInSwiper?: boolean;
-  images: string[];
+  images?: string[];
   price: number;
   title: string;
 };
@@ -19,7 +19,6 @@ const Card: React.FC<CardProps> = ({
   id,
   main_image,
   category,
-  images,
   description,
   isInSwiper = false,
   price,

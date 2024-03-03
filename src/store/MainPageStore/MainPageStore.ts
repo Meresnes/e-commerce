@@ -1,3 +1,4 @@
+import { ProductService } from "@service/index";
 import { Meta } from "@type/meta";
 import { Categories, categoryNormalizer } from "@utils/categories";
 import { ProductItems, normolizeProducts } from "@utils/productsTypes";
@@ -46,6 +47,7 @@ export class MainPageStore implements ILocalStore {
       searchValue: computed,
       category: computed,
       totalRes: computed,
+      getOffset: computed,
       setList: action,
       setSearchValue: action,
       setCategory: action,
@@ -69,6 +71,9 @@ export class MainPageStore implements ILocalStore {
   get totalRes(): number {
     return this._totalRes;
   }
+  get getOffset(): number {
+    return this._offset;
+  }
 
   setList = (arr: ProductItems[]) => {
     this._list = arr;
@@ -88,11 +93,9 @@ export class MainPageStore implements ILocalStore {
         : `&offset=${this._offset}&limit=6`;
     const searchUrl = `?title=${this._searchValue}`;
     try {
-      const response = await axios({
-        method: "GET",
-        headers: {},
-        data: {},
-        url: `${BASE_URL}${searchUrl}${categoryUrl}`,
+      const response = await ProductService.getProducts({
+        categoryUrl: categoryUrl,
+        searchUrl: searchUrl,
       });
 
       runInAction(() => {
