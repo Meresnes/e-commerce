@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from "react";
 
 import { ProductPageStore } from "@store/ProductPageStore";
-import { Meta } from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import cn from "classnames";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
+import { Meta } from "@type/meta";
 
 import RelatedBlock from "./components/RelatedBlock";
 import styles from "./ProductPage.module.scss";

@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 import Card from "@components/Card";
 import { MainPageStore } from "@store/MainPageStore";
+import { Meta } from "@type/meta";
 import { Categories } from "@utils/categories";
-import { Meta } from "@utils/meta";
 import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";

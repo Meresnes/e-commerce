@@ -1,5 +1,5 @@
+import { Meta } from "@type/meta";
 import { Categories } from "@utils/categories";
-import { Meta } from "@utils/meta";
 import { ProductItems, normolizeProducts } from "@utils/productsTypes";
 import { ILocalStore } from "@utils/useLocalStore";
 import axios from "axios";

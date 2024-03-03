@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Card from "@components/Card";
 import { MainPageStore } from "@store/MainPageStore";
-import { Meta } from "@utils/meta";
+import { Meta } from "@type/meta";
 import { ProductItems } from "@utils/productsTypes";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
@@ -10,6 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import Dropdown from "./components/Dropdown";
 import styles from "./MainPage.module.scss";
+import "./InfiniteScroll.scss";
 
 const MainPage = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,9 +28,9 @@ const MainPage = () => {
     setIsDropdownOpen((prev) => !prev);
   }, [setIsDropdownOpen]);
 
-  // useEffect(() => {
-  //   mainPageStore.getProducts();
-  // }, []);
+  useEffect(() => {
+    mainPageStore.getProducts();
+  }, []);
 
   return (
     <>

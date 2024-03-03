@@ -45,6 +45,8 @@
                     .small_images_block__button__image {
                         width: 100px;
                         height: auto;
+                        object-fit: contain;
+                        border: rgba(0, 0, 0, 0.3) 1px solid;
                     }
                 }
             }

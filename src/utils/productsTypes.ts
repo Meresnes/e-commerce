@@ -24,7 +24,7 @@ export const normolizeProducts = (from: ProductApi): ProductItems => ({
   main_image: from.category.image,
   category: from.category.name,
   description: from.description,
-  images: from.images,
+  images: from.images.map((image) => image.replace(/[\[\]"]/g, "")), //case stupid api send some img like this - "[\"http://i.img..\"]", clap clap..
   price: from.price,
   title: from.title,
 });
